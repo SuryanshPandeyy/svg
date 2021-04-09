@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <style>
+    </style>
+</head>
+<div id="section">
+    <button data-number="1" id="circlebtn">
+        circle
+    </button>
+    <button data-number="2" id="rectbtn">
+        rectangle
+    </button>
+</div>
+<div id="contentSection" class="contentSection">
+    <div id="content" class="content" data-number="1" style="display: none;">
+        <p>Circle</p>
+        <div>
+            <label for="width">Svg Width</label>
+            <input type="range" name="width" id="width" value="100%" id="width" min="0" max="1000"></br>
+
+            <label for="height">Svg Height</label>
+            <input type="range" name="height" id="height" value="100%" id="height" min="0" max="1000"></br>
+
+            <label for="cx">cx</label> = 
+            <input type="range" name="cx" id="cx" value="0" min="0" max="1000"></br>
+
+            <label for="cy">cy</label> =
+            <input type="range" name="cy" id="cy" value="0" min="0" max="1000"></br>
+
+            <label for="r">r</label> =
+            <input type="range" name="r" id="r" value="0" min="0" max="1000"></br>
+            
+            <label for="color">Fill color</label> = 
+            <input type="color" name="color" id="color" value="black"><br>
+
+            <label for="stroke">Stroke</label> = 
+            <input type="color" name="stroke" id="stroke" value="black"><br>
+
+            <label for="strokeWidth">Stroke Width</label> = 
+            <input type="range" name="strokeWidth" value="0" min="0" max="100" id="strokeWidth" value="black"><br><br>
+
+            <h4></h4>
+            <h3></h3>
+        </div>
+
+        <svg id="svg">
+            <circle  id="circle"/>
+        </svg>
+        
+
+        <script>
+            var css = document.querySelector("h3");
+            var css2 = document.querySelector("h4");
+
+            var width = document.querySelector("#width");
+            var height = document.querySelector("#height");
+
+            var cx = document.querySelector('#cx');
+            var cy = document.querySelector('#cy');
+            var r = document.querySelector('#r');
+            var color = document.querySelector('#color');
+            var stroke = document.querySelector('#stroke');
+            var strokeWidth = document.querySelector('#strokeWidth');
+            
+            var circle = document.querySelector('#circle');
+            var svg = document.querySelector('#svg');
+
+            function setSvg() {
+                css2.textContent = "Svg width:" + width.value + ",Svg height:" + height.value;
+                svg.setAttribute('width', width.value);
+                svg.setAttribute('height', height.value);
+                
+            }
+
+            width.addEventListener("input" , function(){
+                setSvg();
+            })
+            
+            height.addEventListener("input" , function(){
+                setSvg();
+            })
+            
+
+
+            function setCircle(){
+                
+
+                css.textContent = "cx:"+cx.value + 
+                                  ",cy:"+cy.value + 
+                                  ",r:"+r.value +
+                                  ",color:"+color.value+
+                                  ",stroke:" + stroke.value+
+                                  ",stroke-width:" + strokeWidth.value;
+                                  
+                circle.setAttribute('cx', cx.value);
+                circle.setAttribute('cy', cy.value);
+                circle.setAttribute('r', r.value);
+                circle.setAttribute('fill', color.value);
+                circle.setAttribute('stroke', stroke.value);
+                circle.setAttribute('stroke-width', strokeWidth.value);
+            }
+
+            cx.addEventListener("input", function(){
+                setCircle();
+            })
+            cy.addEventListener("input", function(){
+                setCircle();
+            })
+            r.addEventListener("input", function(){
+                setCircle();
+            })
+            color.addEventListener("input", function(){
+                setCircle();
+            })
+            stroke.addEventListener("input", function(){
+                setCircle();
+            })
+            strokeWidth.addEventListener("input", function(){
+                setCircle();
+            })
+            
+
+        </script>
+    </div>
+
+    <div id="content" class="content" data-number="2" style="display: none;">
+        <p>Rectangle:</p>
+        <label for="width">Width</label> = 
+        <input type="range" name="range" id="width" value="0" min="0" max="1000"></br>
+
+        <label for="height">Height</label> = 
+        <input type="range" name="range" id="height" value="0" min="0" max="1000"></br>
+
+        <label for="x">x</label>
+        <input type="range" name="range" id="x" value="0" min="0" max="1000"></br>
+       
+        <label for="y">y</label>
+        <input type="range" name="range" id="y" value="0" min="0" max="1000"></br>
+    </div>
+    
+</div>
+
+
+<script>
+    let Buttons = document.querySelectorAll("button");
+
+    for (let button of Buttons){
+        button.addEventListener("click", (e) => {
+            let Contents = document.querySelectorAll(".content"); 
+
+            for (let content of Contents){
+                if (content.getAttribute("data-number")=== button.getAttribute("data-number")){
+                    content.style.display="block";
+                }
+                else {
+                    content.style.display="none";
+                }
+            }
+        });
+    }
+</script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
